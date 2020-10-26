@@ -23,10 +23,8 @@ You can use this library in your Unity game by using the Package Manager and ref
 Simple noise:
 
 ```C#
-namespace MyNamespace
-{
+namespace MyNamespace {
     using Unbegames.Noise;
-    
     ...
     int seed = 15;
     float3 point = new float3(3,3,3);
