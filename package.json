@@ -2,7 +2,7 @@
   "name": "com.unbegames.noise",
   "version": "0.9.1",
   "displayName": "Unbegames Noise",
-  "description": "FastNoise Lite library, ported using Unity.Mathematics and Burst",
+  "description": "A port of FastNoise Lite library using Unity.Mathematics for Burst Compiler",
   "unity": "2020.1",  
   "dependencies": {
     "com.unity.mathematics": "1.2.1"
