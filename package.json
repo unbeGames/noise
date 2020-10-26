@@ -1,0 +1,19 @@
+{
+  "name": "com.unbegames.noise",
+  "version": "0.9.0",
+  "displayName": "Burst Noise",
+  "description": "FastNoise Lite library, ported using Unity.Mathematics and Burst",
+  "unity": "2020.1",  
+  "dependencies": {
+		"com.unity.mathematics": "1.2.1"
+	},
+ "keywords": [
+    "noise",
+    "burst"    
+  ],
+  "author": {
+    "name": "Arugin",
+    "email": "arugin@unbegames.com",
+    "url": "https://store.steampowered.com/publisher/unbegames"
+  }
+}
