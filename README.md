@@ -15,6 +15,7 @@ This library has several limitations right now, that can be addresed in the futu
 ## Usage
 
 You can use this library in your Unity game by using the Package Manager and referencing this package. 
+
 Package Manager -> Add package from git URL... -> https://github.com/unbeGames/noise.git
 
 ```C#
