@@ -16,7 +16,11 @@ This library has several limitations right now, that can be addresed in the futu
 
 You can use this library in your Unity game by using the Package Manager and referencing this package. 
 
-Package Manager -> Add package from git URL... -> https://github.com/unbeGames/noise.git
+`Package Manager -> Add package from git URL... -> https://github.com/unbeGames/noise.git`
+
+### Examples
+
+Simple noise:
 
 ```C#
 namespace MyNamespace
