@@ -60,7 +60,7 @@ var noise = new DomainWarpSingle<BasicGridWarp, ValueCubic3D>(warpSeed, warpFreq
 
 ## Double precision
 
-Add NOISE_DOUBLE_PRECISION into scripting define symbols.
+Add `NOISE_DOUBLE_PRECISION` into scripting define symbols.
 
 ## Licensing
 
