@@ -19,7 +19,7 @@ namespace Unbegames.Noise {
     public readonly float weightedStrength;
     public readonly float pingPongStength;
     public readonly float fractalBounding;
-    public real3 permutation;
+    public real3 offset;
 
     public FractalPingPongDeriv(int octaves, float lacunarity = 1.99f, float gain = 0.5f, float weightedStrength = 0, float pingPongStength = 2) : this(new T(), octaves, lacunarity, gain, weightedStrength, pingPongStength) {
 
@@ -32,7 +32,7 @@ namespace Unbegames.Noise {
       this.gain = gain;
       this.pingPongStength = pingPongStength;
       this.weightedStrength = weightedStrength;
-      permutation = real3.zero;
+      offset = real3.zero;
       fractalBounding = CalculateFractalBounding(octaves, gain);
     }
 
@@ -45,7 +45,7 @@ namespace Unbegames.Noise {
       int seed = mSeed;
       real sum = 0;
       real amp = fractalBounding;
-      real3 permutation = this.permutation;
+      real3 offset = this.offset;
       dsum = real3.zero;
 
       for (int i = 0; i < octaves; i++) {
@@ -54,9 +54,9 @@ namespace Unbegames.Noise {
         sum += (noise - 0.5f) * 2 * amp / (1 + dot(dsum, dsum));
         amp *= lerp(1.0f, noise, weightedStrength);
 
-        point = point * lacunarity + permutation;
+        point = point * lacunarity + offset;
         amp *= gain;
-        permutation *= lacunarity;
+        offset *= lacunarity;
       }
 
       return sum;

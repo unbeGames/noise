@@ -11,13 +11,13 @@ using real3 = Unity.Mathematics.float3;
 
 namespace Unbegames.Noise {
 	public struct FractalRiged<T> : INoise3D where T : struct, INoise3D {
-    private readonly T mNoise;
-    private readonly int octaves;
-    private readonly float gain;
-    private readonly float weightedStrength;
-    private readonly float lacunarity;
-    private readonly float fractalBounding;
-    public real3 permutation;
+    public readonly T mNoise;
+    public readonly int octaves;
+    public readonly float gain;
+    public readonly float weightedStrength;
+    public readonly float lacunarity;
+    public readonly float fractalBounding;
+    public real3 offset;
 
     public FractalRiged(int octaves, float lacunarity = 1.99f, float gain = 0.5f, float weightedStrength = 0) : this(new T(), octaves, lacunarity, gain, weightedStrength) {
 
@@ -29,7 +29,7 @@ namespace Unbegames.Noise {
       this.lacunarity = lacunarity;
       this.gain = gain;
       this.weightedStrength = weightedStrength;
-      permutation = real3.zero;
+      offset = real3.zero;
       fractalBounding = CalculateFractalBounding(octaves, gain);
     }
 
@@ -37,16 +37,16 @@ namespace Unbegames.Noise {
       int seed = mSeed;
       real sum = 0;
       real amp = fractalBounding;
-      real3 permutation = this.permutation;
+      real3 offset = this.offset;
 
       for (int i = 0; i < octaves; i++) {
         real noise = abs(mNoise.GetValue(seed++, point));
         sum += (noise * -2 + 1) * amp;
         amp *= lerp(1.0f, 1 - noise, weightedStrength);
 
-        point = point * lacunarity + permutation;
+        point = point * lacunarity + offset;
         amp *= gain;
-        permutation *= lacunarity;
+        offset *= lacunarity;
       }
 
       return sum;
