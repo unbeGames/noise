@@ -46,7 +46,7 @@ namespace Unbegames.Noise {
       for (int i = 0; i < octaves; i++) {
         real noise = abs(mNoise.GetValue(seed++, point, out var deriv));
         dsum += deriv;
-        sum += (noise * -2 + 1) * amp * (1 + dot(dsum, dsum));
+        sum += (noise * -2 + 1) * amp / (1 + dot(dsum, dsum));
         amp *= lerp(1.0f, 1 - noise, weightedStrength);
 
         point *= lacunarity;
