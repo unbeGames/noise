@@ -30,10 +30,16 @@ namespace Unbegames.Noise {
 		internal static real3 InterpHermite(real3 t) { return t * t * (3 - 2 * t); }
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int3 FastRound(real3 f) { return math.select((int3)(f - 0.5f), (int3)(f + 0.5f), f >= 0); }		
+		internal static real3 InterpHermiteDeriv(real3 t) { return 6 * t * (1 - t); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static real3 InterpQuinticDeriv(real3 t) { return 30 * t * t * (t * t - 2 * t + 1); }
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		internal static int3 FastRound(real3 f) { return math.select((int3)(f - 0.5f), (int3)(f + 0.5f), f >= 0); }		
 		
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public static int FastRound(real f) { return math.select((int)(f - 0.5f), (int)(f + 0.5f), f >= 0); }
+		internal static int FastRound(real f) { return math.select((int)(f - 0.5f), (int)(f + 0.5f), f >= 0); }
 		
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		internal static float GradCoord(int seed, int xPrimed, int yPrimed, float xd, float yd) {

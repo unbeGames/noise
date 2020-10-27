@@ -1,5 +1,6 @@
 ﻿using static Unity.Mathematics.math;
 using static Unbegames.Noise.Utils;
+using System.Runtime.CompilerServices;
 
 #if NOISE_DOUBLE_PRECISION
 using real = System.Double;
@@ -29,17 +30,18 @@ namespace Unbegames.Noise {
       this.gain = gain;
       this.weightedStrength = weightedStrength;
       fractalBounding = CalculateFractalBounding(octaves, gain);
-    }  
+    }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public real GetValue(int mSeed, real3 point) {
-      return GetValue(mSeed, point);
+      return GetValue(mSeed, point, out _);
     }
 
     public real GetValue(int mSeed, real3 point, out real3 dsum) {
       int seed = mSeed;
       real sum = 0;
       real amp = fractalBounding;
-      dsum = new real3();
+      dsum = real3.zero;
 
       for (int i = 0; i < octaves; i++) {
         real noise = abs(mNoise.GetValue(seed, point, out var deriv)) * 2 - 1;
