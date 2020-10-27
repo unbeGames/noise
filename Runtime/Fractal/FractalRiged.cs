@@ -17,6 +17,7 @@ namespace Unbegames.Noise {
     private readonly float weightedStrength;
     private readonly float lacunarity;
     private readonly float fractalBounding;
+    public real3 permutation;
 
     public FractalRiged(int octaves, float lacunarity = 1.99f, float gain = 0.5f, float weightedStrength = 0) : this(new T(), octaves, lacunarity, gain, weightedStrength) {
 
@@ -28,6 +29,7 @@ namespace Unbegames.Noise {
       this.lacunarity = lacunarity;
       this.gain = gain;
       this.weightedStrength = weightedStrength;
+      permutation = real3.zero;
       fractalBounding = CalculateFractalBounding(octaves, gain);
     }
 
@@ -35,14 +37,16 @@ namespace Unbegames.Noise {
       int seed = mSeed;
       real sum = 0;
       real amp = fractalBounding;
+      real3 permutation = this.permutation;
 
       for (int i = 0; i < octaves; i++) {
         real noise = abs(mNoise.GetValue(seed++, point));
         sum += (noise * -2 + 1) * amp;
         amp *= lerp(1.0f, 1 - noise, weightedStrength);
 
-        point *= lacunarity;        
+        point = point * lacunarity + permutation;
         amp *= gain;
+        permutation *= lacunarity;
       }
 
       return sum;
