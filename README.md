@@ -10,7 +10,8 @@ This library has several limitations right now, that can be addresed in the futu
 * only 3d noise was ported;
 * point transformations not yet implemeted;
 * Cellular3D only returns distance as a result;
-* code optimisation is in progress.
+* code optimisation is in progress;
+* there are only fractal derivatives implemented right now.
 
 ## Usage
 
