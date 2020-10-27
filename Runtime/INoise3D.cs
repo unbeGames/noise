@@ -10,4 +10,8 @@ namespace Unbegames.Noise {
 	public interface INoise3D {
 		real GetValue(int seed, real3 point);
 	}
+
+	public interface INoiseDeriv3D {
+		real GetValue(int seed, real3 point, out real3 deriv);
+	}
 }
